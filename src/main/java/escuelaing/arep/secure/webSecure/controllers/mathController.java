@@ -22,10 +22,60 @@ public class mathController {
   @Autowired
   connectionService cs;
 
-  @GetMapping("/{a}&{b}")
-  public ResponseEntity<?> sumEntity(@PathVariable Double a, @PathVariable Double b) {
+  @GetMapping("sum/{a}&{b}")
+  public ResponseEntity<?> sumEntity(@PathVariable String a, @PathVariable String b) {
     try {
       return new ResponseEntity<>(cs.sum(a,b), HttpStatus.OK);
+    } catch (Exception ex) {
+      Logger.getLogger(mathController.class.getName()).log(Level.SEVERE, null, ex);
+      return new ResponseEntity<>("No user exist", HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @GetMapping("substrac/{a}&{b}")
+  public ResponseEntity<?> substracEntity(@PathVariable String a, @PathVariable String b) {
+    try {
+      return new ResponseEntity<>(cs.substrac(a,b), HttpStatus.OK);
+    } catch (Exception ex) {
+      Logger.getLogger(mathController.class.getName()).log(Level.SEVERE, null, ex);
+      return new ResponseEntity<>("No user exist", HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @GetMapping("multiply/{a}&{b}")
+  public ResponseEntity<?> multiplyEntity(@PathVariable String a, @PathVariable String b) {
+    try {
+      return new ResponseEntity<>(cs.multiply(a, b), HttpStatus.OK);
+    } catch (Exception ex) {
+      Logger.getLogger(mathController.class.getName()).log(Level.SEVERE, null, ex);
+      return new ResponseEntity<>("No user exist", HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @GetMapping("divide/{a}&{b}")
+  public ResponseEntity<?> divideEntity(@PathVariable String a, @PathVariable String b) {
+    try {
+      return new ResponseEntity<>(cs.divide(a, b), HttpStatus.OK);
+    } catch (Exception ex) {
+      Logger.getLogger(mathController.class.getName()).log(Level.SEVERE, null, ex);
+      return new ResponseEntity<>("No user exist", HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @GetMapping("square/{a}")
+  public ResponseEntity<?> squareEntity(@PathVariable String a) {
+    try {
+      return new ResponseEntity<>(cs.square(a), HttpStatus.OK);
+    } catch (Exception ex) {
+      Logger.getLogger(mathController.class.getName()).log(Level.SEVERE, null, ex);
+      return new ResponseEntity<>("No user exist", HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @GetMapping("exponent/{a}&{b}")
+  public ResponseEntity<?> exponentEntity(@PathVariable String a, @PathVariable String b) {
+    try {
+      return new ResponseEntity<>(cs.exponent(a, b), HttpStatus.OK);
     } catch (Exception ex) {
       Logger.getLogger(mathController.class.getName()).log(Level.SEVERE, null, ex);
       return new ResponseEntity<>("No user exist", HttpStatus.NOT_FOUND);

@@ -20,7 +20,7 @@ public class connectionService {
 
   final String urlBase = "https://localhost:4567/api/v1/math/";
 
-  static ResponseEntity<Double> connect(String url) throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+  static ResponseEntity<String> connect(String url) throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
     SSLContextBuilder builder = new SSLContextBuilder();
     builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
     SSLConnectionSocketFactory SslCSF = new SSLConnectionSocketFactory(builder.build());
@@ -28,48 +28,46 @@ public class connectionService {
 
     HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
     requestFactory.setHttpClient(httpClient);
-    return new RestTemplate(requestFactory).exchange(url, HttpMethod.GET, null, Double.class);
+    return new RestTemplate(requestFactory).exchange(url, HttpMethod.GET, null, String.class);
   }
 
-  public Double sum(Double a, Double b) throws NoSuchAlgorithmException, KeyStoreException,
+  public String sum(String a, String b) throws NoSuchAlgorithmException, KeyStoreException,
       KeyManagementException {
     String url = urlBase + "sum/" + a + "&" + b;
-
-    ResponseEntity<Double> result = connect(url);
-
+    ResponseEntity<String> result = connect(url);
     return result.getBody();
   }
 
-  public Double substrac(Double a, Double b)
+  public String substrac(String a, String b)
       throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
     String url = urlBase + "substrac/" + a + "&" + b;
-    ResponseEntity<Double> result = connect(url);
+    ResponseEntity<String> result = connect(url);
     return result.getBody();
   }
 
-  public Double multiply(Double a, Double b)
+  public String multiply(String a, String b)
       throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
     String url = urlBase + "multiply/" + a + "&" + b;
-    ResponseEntity<Double> result = connect(url);
+    ResponseEntity<String> result = connect(url);
     return result.getBody();
   }
 
-  public Double divide(Double a, Double b) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
+  public String divide(String a, String b) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
     String url = urlBase + "divide/" + a + "&" + b;
-    ResponseEntity<Double> result = connect(url);
+    ResponseEntity<String> result = connect(url);
     return result.getBody();
   }
 
-  public Double square(Double a) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
+  public String square(String a) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
     String url = urlBase + "square/" + a;
-    ResponseEntity<Double> result = connect(url);
+    ResponseEntity<String> result = connect(url);
     return result.getBody();
   }
 
-  public Double exponent(Double a, Double b)
+  public String exponent(String a, String b)
       throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
     String url = urlBase + "exponent/" + a + "&" + b;
-    ResponseEntity<Double> result = connect(url);
+    ResponseEntity<String> result = connect(url);
     return result.getBody();
   }
 
